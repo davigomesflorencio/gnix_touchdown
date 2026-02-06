@@ -1,3 +1,8 @@
+<div>
+<img src="./screenshots/1.jpeg" alt="drawing" style="width:auto;"/>
+
+</div>
+
 # Touchdown - E-Commerce App
 
 **Touchdown** é uma aplicação de e-commerce moderna desenvolvida em SwiftUI para iOS. O projeto foca em uma experiência de usuário fluida para compras de artigos esportivos, especificamente capacetes e acessórios relacionados.
