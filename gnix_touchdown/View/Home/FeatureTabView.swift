@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct FeatureTabView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  var body: some View {
+    TabView{
+      ForEach(players){player in
+        FeatureItemTabView(player: player)
+          .padding(.top,10)
+          .padding(.horizontal,10)
+      }
     }
+    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+  }
 }
 
 #Preview {
-    FeatureTabView()
+  FeatureTabView()
 }

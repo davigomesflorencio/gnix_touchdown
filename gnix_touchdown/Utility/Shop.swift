@@ -7,7 +7,8 @@
 
 import Foundation
 
-class Shop: ObservableObject{
-  @Published var showProduct:Bool = false
-  @Published var selectedProduct:Product?
-}
+//class Shop: ObservableObject{
+  
+//  @Published var showProduct:Bool = false
+//  @Published var selectedProduct:Product?
+//}

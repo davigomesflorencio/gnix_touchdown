@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct BrandItemGridView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+  // MARK: - property
+  let brand:Brand
+  
+  // MARK: - Body
+  var body: some View {
+    Image(brand.image)
+      .resizable()
+      .scaledToFit()
+      .padding(3)
+      .background(Color.white.cornerRadius(12))
+      .background(RoundedRectangle(cornerRadius: 12).stroke(Color.gray,lineWidth: 1))
+  }
 }
 
 #Preview {
-    BrandItemGridView()
+  BrandItemGridView(brand: brands[0])
 }

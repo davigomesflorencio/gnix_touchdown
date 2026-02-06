@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct FeatureItemTabView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+  
+  let player: Player
+  
+  var body: some View {
+    Image(player.image)
+      .resizable()
+      .scaledToFit()
+      .cornerRadius(12)
+  }
 }
 
 #Preview {
-    FeatureItemTabView()
+  FeatureItemTabView(player: mockPlayer)
 }

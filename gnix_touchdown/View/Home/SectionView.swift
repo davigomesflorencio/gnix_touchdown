@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct SectionView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  
+  @State var rotateClockWise : Bool
+  
+  var body: some View {
+    VStack(spacing:0){
+      Spacer()
+      
+      Text("Categories".uppercased())
+        .font(.footnote)
+        .fontWeight(.bold)
+        .foregroundColor(.white)
+        .rotationEffect(Angle(degrees: rotateClockWise ? 90 : -90))
+      
+      Spacer()
     }
+    .background(colorGray.cornerRadius(12))
+    .frame(width: 85)
+  }
 }
 
+
 #Preview {
-    SectionView()
+  SectionView(rotateClockWise: true)
+    .padding()
+    .background(backGroundColor)
 }

@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct ProductItemView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+  // MARK: - placeholder
+  let product :Product
+  
+  var body: some View {
+    VStack(alignment: .leading,spacing: 6){
+      ZStack{
+        Image(product.image)
+          .resizable()
+          .scaledToFit()
+          .padding(10)
+      }
+      .background(Color(red: product.red, green: product.green, blue: product.blue))
+      .cornerRadius(12)
+      
+      Text(product.name)
+        .font(.title3)
+        .fontWeight(.black)
+      
+      Text(product.formattedPrice)
+        .fontWeight(.semibold)
+        .foregroundColor(.gray)
     }
+  }
 }
 
 #Preview {
-    ProductItemView()
+  ProductItemView(product: products[0])
 }

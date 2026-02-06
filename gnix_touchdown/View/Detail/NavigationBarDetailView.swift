@@ -9,10 +9,32 @@ import SwiftUI
 
 struct NavigationBarDetailView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      HStack{
+        Button{
+          withAnimation(.easeIn){
+            feedback.impactOccurred()
+          }
+        }label: {
+          Image(systemName: "chevron.left")
+            .font(.title)
+            .foregroundColor(.white)
+        }
+        
+        Spacer()
+
+        Button{
+          
+        }label: {
+          Image(systemName: "cart")
+            .font(.title)
+            .foregroundColor(.white)
+        }
+      }
     }
 }
 
-#Preview {
-    NavigationBarDetailView()
+#Preview(traits: .sizeThatFitsLayout) {
+  NavigationBarDetailView()
+    .padding()
+    .background(.gray)
 }
