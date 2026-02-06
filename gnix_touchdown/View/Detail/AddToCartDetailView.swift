@@ -9,7 +9,7 @@ import SwiftUI
 struct AddToCartDetailView: View {
   // MARK: - PROPERTY
   
-//  @EnvironmentObject var shop: Shop
+  @EnvironmentObject var shop: Shop
   
   // MARK: - BODY
   
@@ -27,9 +27,9 @@ struct AddToCartDetailView: View {
     .padding(15)
     .background(
       Color(
-        red: mockProduct.red,
-        green:  mockProduct.green,
-        blue :mockProduct.blue
+        red: shop.selectedProduct?.red ?? mockProduct.red,
+        green: shop.selectedProduct?.green ?? mockProduct.green,
+        blue : shop.selectedProduct?.blue ?? mockProduct.blue
       )
     )
     .clipShape(Capsule())
@@ -41,7 +41,7 @@ struct AddToCartDetailView: View {
 struct AddToCartDetailView_Previews: PreviewProvider {
   static var previews: some View {
     AddToCartDetailView()
-//      .environmentObject(Shop())
+      .environmentObject(Shop())
       .previewLayout(.sizeThatFits)
       .background(.gray)
       .padding()

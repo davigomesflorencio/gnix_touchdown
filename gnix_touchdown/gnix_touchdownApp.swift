@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct gnix_touchdownApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-//            .environmentObject(Shop())
-        }
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .environmentObject(Shop())
     }
+  }
 }

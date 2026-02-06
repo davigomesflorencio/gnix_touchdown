@@ -6,55 +6,64 @@
 //MARK
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
   
   // MARK: - Properties
+  @EnvironmentObject var shop: Shop
   
   var body: some View {
     ZStack {
-      VStack(spacing: 0) {
-        NavigationBarView()
-          .padding(.horizontal,15)
-          .padding(.bottom)
-          .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
-          .background(Color.white)
-          .shadow(color: Color.black.opacity(0.15), radius: 5,x: 0,y: 5)
+      if shop.showProduct == false && shop.selectedProduct == nil {
         
-        ScrollView(.vertical,showsIndicators: false){
-          VStack(spacing: 0){
-              FeatureTabView()
-              .frame(height: UIScreen.main.bounds.width/1.475).padding(.vertical,10)
-              
-            CategoryGridView()
-            
-            TitleView(title: "Helmets")
-            
-            LazyVGrid(columns: gridLayout,spacing: 15){
-              ForEach(products){product in
-                  ProductItemView(product: product)
-                  .onTapGesture {
-                    feedback.impactOccurred()
-                    
-                    withAnimation(.easeOut){
-                        
-                    }
-                  }
-              }
-            }
-            .padding(15)
-            
-            TitleView(title: "Brands")
-            
-            BrandGridView()
+        VStack(spacing: 0) {
+          NavigationBarView()
+            .padding(.horizontal,15)
+            .padding(.bottom)
+            .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
+            .background(Color.white)
+            .shadow(color: Color.black.opacity(0.15), radius: 5,x: 0,y: 5)
           
-            FooterView()
-              .padding(.horizontal)
+          ScrollView(.vertical,showsIndicators: false){
+            VStack(spacing: 0){
+              FeatureTabView()
+                .frame(height: UIScreen.main.bounds.width/1.475).padding(.vertical,10)
+              
+              CategoryGridView()
+              
+              TitleView(title: "Helmets")
+              
+              LazyVGrid(columns: gridLayout,spacing: 15){
+                ForEach(products){product in
+                  ProductItemView(product: product)
+                    .onTapGesture {
+                      feedback.impactOccurred()
+                      print(product.name)
+                      withAnimation(.easeOut){
+                        shop.selectedProduct = product
+                        shop.showProduct = true
+                      }
+                    }
+                }
+              }
+              .padding(15)
+              
+              TitleView(title: "Brands")
+              
+              BrandGridView()
+              
+              FooterView()
+                .padding(.horizontal)
+            }
           }
         }
+        .background(backGroundColor.ignoresSafeArea(.all,edges:.all))
+        // VStack
+        
+      }else{
+        ProductDetailView()
       }
-      .background(backGroundColor.ignoresSafeArea(.all,edges:.all))
-      // VStack
     }
     .ignoresSafeArea(.all,edges: .top)
   }
@@ -62,4 +71,5 @@ struct ContentView: View {
 
 #Preview {
   ContentView()
+    .environmentObject(Shop())
 }

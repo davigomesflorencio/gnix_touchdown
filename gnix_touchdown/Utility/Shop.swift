@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
-//class Shop: ObservableObject{
+class Shop: ObservableObject {
   
-//  @Published var showProduct:Bool = false
-//  @Published var selectedProduct:Product?
-//}
+  @Published var showProduct:Bool = false
+  @Published var selectedProduct:Product?
+}

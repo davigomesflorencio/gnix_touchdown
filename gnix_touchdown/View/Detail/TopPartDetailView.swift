@@ -9,39 +9,41 @@ import SwiftUI
 
 struct TopPartDetailView: View {
   
+  @EnvironmentObject var shop: Shop
   @State private var isAnimating: Bool = false
   
-    var body: some View {
-      HStack(alignment: .center, spacing: 6){
+  var body: some View {
+    HStack(alignment: .center, spacing: 6){
+      
+      VStack(alignment: .leading,spacing: 6){
+        Text("price")
+          .fontWeight(.semibold)
         
-        VStack(alignment: .leading,spacing: 6){
-              Text("price")
-            .fontWeight(.semibold)
-          
-          Text(mockProduct.formattedPrice)
-            .font(.largeTitle)
-            .fontWeight(.black)
-            .scaleEffect(1.35,anchor: .leading)
-        }
-        .offset(y: isAnimating ? -50 : 75)
-        
-        Spacer()
-        
-        Image(mockProduct.image)
-          .resizable()
-          .scaledToFit()
-          .offset(y:isAnimating ? 0 : -35)
+        Text(shop.selectedProduct?.formattedPrice ?? mockProduct.formattedPrice)
+          .font(.largeTitle)
+          .fontWeight(.black)
+          .scaleEffect(1.35,anchor: .leading)
       }
-      .onAppear(perform: {
-        withAnimation(.easeIn){
-          isAnimating.toggle()
-        }
-      })
+      .offset(y: isAnimating ? -50 : 75)
+      
+      Spacer()
+      
+      Image(shop.selectedProduct?.image ?? mockProduct.image)
+        .resizable()
+        .scaledToFit()
+        .offset(y:isAnimating ? 0 : -35)
     }
+    .onAppear(perform: {
+      withAnimation(.easeIn){
+        isAnimating.toggle()
+      }
+    })
+  }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    TopPartDetailView()
+  TopPartDetailView()
+    .environmentObject(Shop())
     .padding()
     .background(.gray)
 }
